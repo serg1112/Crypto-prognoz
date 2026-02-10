@@ -1,34 +1,33 @@
-const URL = 'data.json';
-const INTERVAL = 60000; // 60 сек
-
 async function loadData() {
   try {
-    const res = await fetch(URL + '?t=' + Date.now());
+    const res = await fetch('./data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
     const data = await res.json();
-    render(data);
+
+    document.getElementById('status').innerText =
+      '✅ Оновлено: ' + new Date().toLocaleTimeString();
+
+    let html = '';
+    for (const key in data) {
+      const s = data[key];
+      html += `
+        <div class="card">
+          <h2>${key} / USDT (${s.timeframe ?? s.tf})</h2>
+          <p>Сигнал: ${s.signal ?? s.bias}</p>
+          <p>Вхід: ${s.entry ?? s.zone}</p>
+          <p>TP: ${(s.tp ?? s.take_profit ?? []).join(' / ')}</p>
+          <p>SL: ${s.sl ?? s.stop_loss}</p>
+        </div>
+      `;
+    }
+    document.getElementById('content').innerHTML = html;
+
   } catch (e) {
-    document.getElementById('content').innerText = '❌ Помилка завантаження';
-  }
-}
-
-function render(data) {
-  const el = document.getElementById('content');
-  el.innerHTML = '';
-
-  for (const coin in data) {
-    const s = data[coin];
-
-    el.innerHTML += `
-      <div class="card">
-        <h2>${coin} / USDT (${s.tf})</h2>
-        <div class="type">🟡 ${s.type}</div>
-        <div class="entry">Вхід: ${s.entry}</div>
-        <div class="sl">SL: ${s.sl}</div>
-        <div class="tp">TP: ${s.tp.join(' / ')}</div>
-      </div>
-    `;
+    document.getElementById('status').innerText = '❌ Помилка завантаження';
+    console.error(e);
   }
 }
 
 loadData();
-setInterval(loadData, INTERVAL);
+setInterval(loadData, 60000);
