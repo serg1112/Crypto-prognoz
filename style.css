@@ -1,8 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background: #0e1117;
-  color: #fff;
-  padding: 15px;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
 h1 {
@@ -10,25 +9,9 @@ h1 {
 }
 
 .card {
-  background: #161b22;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-}
-
-.type {
-  color: #f0c674;
-  font-weight: bold;
-}
-
-.entry {
-  color: #58a6ff;
-}
-
-.tp {
-  color: #2ea043;
-}
-
-.sl {
-  color: #f85149;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
