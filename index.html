@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Crypto Прогноз</title>
-
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Крипто прогнози 15м</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
 <h1>📊 Крипто прогнози (15м)</h1>
 
-<div id="content">Завантаження...</div>
+<div id="status">⏳ Завантаження…</div>
+<div id="content"></div>
 
-<script src="script.js"></script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
-</script>
-
+<script src="./script.js"></script>
 </body>
 </html>
